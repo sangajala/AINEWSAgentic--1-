@@ -12,6 +12,7 @@ class ChatbotWithToolNode:
         Processes the input state and generates a response with tool integration.
         """
         user_input = state["messages"][-1] if state["messages"] else ""
+        print('user_input',user_input)
         llm_response = self.llm.invoke([{"role": "user", "content": user_input}])
 
         # Simulate tool-specific logic
@@ -30,6 +31,7 @@ class ChatbotWithToolNode:
             """
             Chatbot logic for processing the input state and returning a response.
             """
+            print('chhatbot node',state["messages"])
             return {"messages": [llm_with_tools.invoke(state["messages"])]}
 
         return chatbot_node
